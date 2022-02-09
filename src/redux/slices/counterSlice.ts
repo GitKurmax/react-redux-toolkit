@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
+import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 
 export interface CounterState {
     value: number
@@ -7,16 +7,6 @@ export interface CounterState {
 const initialState: CounterState = {
     value: 0,
 }
-
-// First, create the thunk
-export const fetchUserById = createAsyncThunk(
-    'users/fetchByIdStatus',
-    async (userId, thunkAPI) => {
-        const response = await fetch('https://google.com')
-        console.log(response)
-        // return response.data
-    }
-)
 
 export const counterSlice = createSlice({
     name: 'counter',
@@ -36,15 +26,8 @@ export const counterSlice = createSlice({
             state.value += action.payload
         },
     },
-    extraReducers: (builder) => {
-        // Add reducers for additional action types here, and handle loading state as needed
-        builder.addCase(fetchUserById.fulfilled, (state, action) => {
-
-        })
-    },
 })
-
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
+export const {increment, decrement, incrementByAmount} = counterSlice.actions
 
 export default counterSlice.reducer
